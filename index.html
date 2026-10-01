@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="color-scheme" content="light dark">
-  <title>Kooperationsfortbildungen – Dashboard 0.8.2</title>
+  <title>Kooperationsfortbildungen – Dashboard 0.9.0</title>
   <style>
 :root {
   --bg: #f4f5f7;
@@ -65,6 +65,7 @@ main{padding:24px clamp(14px,3.5vw,48px) 60px;max-width:1500px;margin:0 auto}
 .pending-workflow-box{display:grid;gap:12px;padding:14px;border:1px solid #e1b7b7;border-radius:11px;background:#fff8f8}.pending-workflow-box>div:first-child{display:grid;gap:3px}.pending-workflow-box>div:first-child span{font-size:.8rem;color:var(--muted)}.pending-workflow-box>label{display:grid;gap:5px}.pending-workflow-box textarea{width:100%}
 .detail-overview{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}.detail-stat{border:1px solid var(--line);border-radius:10px;background:var(--surface-2);padding:11px 12px}.detail-stat span{display:block;font-size:.72rem;color:var(--muted);font-weight:650}.detail-stat strong{display:block;margin-top:4px;font-size:1.05rem}.precheck-box{border:1px solid #cfd9df;border-radius:11px;background:#f7fafc;padding:4px 12px}.precheck-box .check-row{border:0}.participant-lists{display:grid;grid-template-columns:1fr 1fr;gap:12px}.participant-lists label{display:grid;gap:5px}.participant-lists textarea{min-height:110px}.dialog-actions-left{display:flex;gap:8px;flex-wrap:wrap}.source-links button{border:1px solid #ccd3da;border-radius:8px;padding:7px 9px;background:var(--surface);color:var(--accent);font-size:.82rem;font-weight:650;cursor:pointer}.archive-table{min-width:940px}.archive-table .archive-title{min-width:320px}.archive-actions{display:flex;gap:6px;flex-wrap:wrap}.archive-status{font-size:.76rem;color:var(--muted)}.hidden-table{table-layout:fixed;min-width:920px}.hidden-table col.hidden-plus{width:56px}.hidden-table col.hidden-date{width:155px}.hidden-table col.hidden-title{width:auto}.hidden-table col.hidden-owner{width:190px}.hidden-table col.hidden-reason-col{width:180px}.hidden-table .hidden-title-cell{min-width:360px}.hidden-table .hidden-owner-cell{font-weight:650}.hidden-table .date-sub{white-space:nowrap}
 @media(max-width:700px){.detail-overview,.participant-lists{grid-template-columns:1fr}.dialog-actions-left{display:grid;grid-template-columns:1fr 1fr}}
+.participant-tools{display:flex;align-items:center;justify-content:space-between;gap:8px;flex-wrap:wrap;margin-bottom:2px}.participant-tools>span{font-size:.72rem;color:var(--muted);font-weight:650}.participant-tools-actions{display:flex;gap:6px;flex-wrap:wrap}.participant-tools .mini-btn{font-size:.72rem;padding:5px 7px}.participant-count-hint{font-size:.72rem;color:var(--muted);margin-top:4px}.booking-paste-box{border:1px solid #cfd9df;border-radius:11px;background:#f8fafc;padding:13px;display:grid;gap:10px}.booking-paste-box[hidden]{display:none}.booking-paste-head{display:flex;justify-content:space-between;gap:10px;align-items:flex-start}.booking-paste-head strong{display:block;font-size:.9rem}.booking-paste-head span{display:block;color:var(--muted);font-size:.76rem;margin-top:2px;line-height:1.4}.booking-paste-box textarea{width:100%;min-height:130px}.booking-paste-preview{border:1px solid var(--line);border-radius:9px;background:var(--surface);padding:10px 11px;font-size:.82rem;line-height:1.45}.booking-paste-preview strong{display:block;margin-bottom:4px}.booking-paste-preview ul{margin:5px 0 0 18px;padding:0}.booking-paste-actions{display:flex;justify-content:flex-end;gap:8px;flex-wrap:wrap}.comparison-box{border:1px solid var(--line);border-radius:11px;background:var(--surface-2);padding:13px;display:grid;gap:10px}.comparison-head{display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap}.comparison-head strong{font-size:.9rem}.comparison-summary{display:flex;gap:7px;flex-wrap:wrap}.comparison-chip{display:inline-flex;align-items:center;border-radius:999px;padding:5px 8px;font-size:.72rem;font-weight:700;background:#edf4f8;color:var(--accent)}.comparison-chip.ok{background:var(--ok-soft);color:var(--ok)}.comparison-chip.warn{background:var(--warn-soft);color:var(--warn)}.comparison-chip.critical{background:var(--danger-soft);color:var(--danger)}.comparison-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:9px}.comparison-group{border:1px solid #e3e6ea;border-radius:9px;background:var(--surface);padding:9px 10px;min-height:72px}.comparison-group strong{font-size:.76rem;display:block;margin-bottom:5px}.comparison-group ul{margin:0;padding-left:17px;font-size:.78rem;line-height:1.45}.comparison-empty{font-size:.78rem;color:var(--muted)}@media(max-width:700px){.comparison-grid{grid-template-columns:1fr}}
 .field-help{font-size:.72rem;color:var(--muted);line-height:1.35}.resolved-link{font-size:.78rem;color:var(--muted);margin-top:10px;line-height:1.4}.resolved-link a{word-break:break-all}
 
 </style>
@@ -74,7 +75,7 @@ main{padding:24px clamp(14px,3.5vw,48px) 60px;max-width:1500px;margin:0 auto}
     <div>
       <p class="eyebrow">HLA · Kooperation</p>
       <h1>Fortbildungs-Dashboard</h1>
-      <p class="subtitle">DFF · Uni Gießen · Medienanstalt Hessen · Prototyp 0.8.2</p>
+      <p class="subtitle">DFF · Uni Gießen · Medienanstalt Hessen · Prototyp 0.9.0</p>
     </div>
     <div class="file-state" id="fileState" aria-live="polite">
       <span class="dot dot-muted"></span>
@@ -315,13 +316,37 @@ main{padding:24px clamp(14px,3.5vw,48px) 60px;max-width:1500px;margin:0 auto}
 
         <div class="participant-lists">
           <label>
-            <span>Gebuchte TN</span>
-            <textarea id="editBookedAttendees" rows="5" placeholder="Namen / Arbeitsnotizen zu den gebuchten TN …"></textarea>
+            <div class="participant-tools">
+              <span>Gebuchte TN</span>
+              <div class="participant-tools-actions"><button class="mini-btn" type="button" id="pasteBookingsBtn">Aus Buchungsseite einfügen</button></div>
+            </div>
+            <textarea id="editBookedAttendees" rows="6" placeholder="Eine Person pro Zeile …"></textarea>
+            <small class="participant-count-hint" id="bookedListCount">Noch keine Namensliste erfasst.</small>
           </label>
           <label>
-            <span>Erschienene TN</span>
-            <textarea id="editActualAttendees" rows="5" placeholder="Namen / Arbeitsnotizen zu den erschienenen TN …"></textarea>
+            <div class="participant-tools">
+              <span>Erschienene TN</span>
+              <div class="participant-tools-actions"><button class="mini-btn" type="button" id="copyBookedToActualBtn">Gebuchte übernehmen</button></div>
+            </div>
+            <textarea id="editActualAttendees" rows="6" placeholder="Eine Person pro Zeile …"></textarea>
+            <small class="participant-count-hint" id="actualListCount">Noch keine Anwesenheitsliste erfasst.</small>
           </label>
+        </div>
+
+        <div class="booking-paste-box" id="bookingPasteBox" hidden>
+          <div class="booking-paste-head">
+            <div><strong>Gebuchte TN aus WordPress übernehmen</strong><span>Den kopierten Inhalt der Buchungsseite hier einfügen. Das Dashboard versucht nur freigegebene Buchungen und die zugehörigen Namen zu erkennen. Alternativ funktioniert auch eine reine Namensliste.</span></div>
+            <button class="icon-btn" type="button" id="closeBookingPasteBtn" aria-label="Schließen">×</button>
+          </div>
+          <textarea id="bookingPasteInput" placeholder="Inhalt der Buchungsseite oder Namen untereinander hier einfügen …"></textarea>
+          <div class="booking-paste-preview" id="bookingPastePreview">Noch nichts eingefügt.</div>
+          <div class="booking-paste-actions"><button class="btn" type="button" id="clearBookingPasteBtn">Leeren</button><button class="btn btn-primary" type="button" id="applyBookingPasteBtn" disabled>Erkannte TN übernehmen</button></div>
+        </div>
+
+        <div class="comparison-box" id="participantComparison">
+          <div class="comparison-head"><strong>Abgleich angemeldet ↔ erschienen</strong><span class="comparison-empty" id="comparisonHint">Für den Abgleich beide Listen erfassen.</span></div>
+          <div class="comparison-summary" id="comparisonSummary"></div>
+          <div class="comparison-grid" id="comparisonGrid" hidden></div>
         </div>
 
         <fieldset>
@@ -366,7 +391,7 @@ main{padding:24px clamp(14px,3.5vw,48px) 60px;max-width:1500px;margin:0 auto}
 
   <script>
 /* Kleine lokale Datei-Hilfen.
- * Version 0.8.2 bleibt bewusst bei EINER JSON-Datendatei.
+ * Version 0.9.0 bleibt bewusst bei EINER JSON-Datendatei.
  * WebDAV ist noch nicht implementiert; diese Datei verspricht keine Drop-in-Migration.
  */
 (function(){
@@ -434,7 +459,7 @@ main{padding:24px clamp(14px,3.5vw,48px) 60px;max-width:1500px;margin:0 auto}
 
   M.emptyData=()=>({
     schema:'hla-koop-dashboard',
-    version:6,
+    version:7,
     updatedAt:new Date().toISOString(),
     settings:{
       lowEnrollmentThreshold:5,
@@ -464,7 +489,7 @@ main{padding:24px clamp(14px,3.5vw,48px) 60px;max-width:1500px;margin:0 auto}
   M.normalizeData=(raw)=>{
     if(!raw || raw.schema!=='hla-koop-dashboard') throw new Error('Keine gültige Koop-Dashboard-Datei. Erwartet wird schema "hla-koop-dashboard".');
     const d=M.emptyData();
-    d.version=Math.max(Number(raw.version)||1,6);
+    d.version=Math.max(Number(raw.version)||1,7);
     d.updatedAt=raw.updatedAt||d.updatedAt;
     d.settings={...d.settings,...(raw.settings||{})};
     d.settings.ownerFilters=normalizeOwnerFilters(raw.settings?.ownerFilters ?? d.settings.ownerFilters);
@@ -764,7 +789,7 @@ main{padding:24px clamp(14px,3.5vw,48px) 60px;max-width:1500px;margin:0 auto}
   'use strict';
   const S=window.KoopStorage,M=window.KoopModel;
   const $=id=>document.getElementById(id);
-  const state={data:null,fileHandle:null,fileName:null,dirty:false,activeEventId:null,lastExportName:null};
+  const state={data:null,fileHandle:null,fileName:null,dirty:false,activeEventId:null,lastExportName:null,bookedListTouched:false,actualListTouched:false};
   const els={
     fileState:$('fileState'),storageNotice:$('storageNotice'),empty:$('emptyState'),content:$('appContent'),open:$('openBtn'),new:$('newBtn'),save:$('saveBtn'),importWp:$('importWpBtn'),export:$('exportBtn'),recover:$('recoverBtn'),
     dataInput:$('dataFileInput'),wpInput:$('wpFileInput'),actions:$('actionList'),tbody:$('eventTableBody'),partner:$('partnerFilter'),status:$('statusFilter'),search:$('searchInput'),count:$('eventCountLabel'),quarter:$('quarterSelect'),qstats:$('quarterStats'),dialog:$('editDialog'),hiddenToggle:$('hiddenToggleBtn'),hiddenPanel:$('hiddenPanel'),hiddenCount:$('hiddenCount'),hiddenSearch:$('hiddenSearch'),hiddenTbody:$('hiddenEventTableBody'),ownerFilterList:$('ownerFilterList'),archiveToggle:$('archiveToggleBtn'),archivePanel:$('archivePanel'),archiveCount:$('archiveCount'),archiveTbody:$('archiveTableBody')
@@ -939,6 +964,7 @@ main{padding:24px clamp(14px,3.5vw,48px) 60px;max-width:1500px;margin:0 auto}
     const e=state.data.events.find(x=>x.id===id);if(!e)return;state.activeEventId=id;const d=M.formatDate(e);
     $('editPartner').textContent=e.partner;$('editTitle').textContent=e.title;$('editMeta').textContent=`${d.main}${d.sub?` · ${d.sub}`:''}`;$('editId').value=e.id;
     $('editAttendanceReceived').checked=e.workflow.attendanceListReceived;$('editCertificatesSent').checked=e.workflow.certificatesSent;$('editDecision').value=e.workflow.decision;$('editBooked').value=e.bookings.booked??'';$('editActual').value=e.workflow.actualAttendees??'';$('editAttendanceDate').value=isoDateValue(e.workflow.attendanceListReceivedAt);$('editEnrollmentDayBeforeOk').checked=Boolean(e.workflow.enrollmentDayBeforeOk);$('editBookedAttendees').value=e.workflow.bookedAttendeesText||'';$('editActualAttendees').value=e.workflow.actualAttendeesText||'';$('editNotes').value=e.notes||'';
+    state.bookedListTouched=false;state.actualListTouched=false;$('bookingPasteBox').hidden=true;$('bookingPasteInput').value='';renderBookingPastePreview();renderParticipantLists(false);
     renderDetailOverview(e);
     $('editWpFeedback').value=e.workflow.weeklyPlanFeedback||'';$('editWpFeedbackForwarded').checked=Boolean(e.workflow.weeklyPlanFeedbackForwarded);const detailAction=M.nextAction(e,state.data.settings);$('pendingWorkflowBox').hidden=!['wp-pending-feedback','wp-pending-wait'].includes(detailAction.key);
     $('editBbbUrl').value=e.links?.bbbUrl||'';const partnerDefault=state.data.settings.partnerDefaults?.[e.partner]?.bbbUrl||'';$('editPartnerBbbLabel').textContent=`Standard-BBB-Link für ${e.partner}`;$('editPartnerBbbUrl').value=partnerDefault;renderResolvedBbb(e);
@@ -957,6 +983,127 @@ main{padding:24px clamp(14px,3.5vw,48px) 60px;max-width:1500px;margin:0 auto}
     $('editWpStatus').textContent=e.wordpressStatus||'–';
   }
 
+  function cleanPersonLabel(value){
+    return String(value||'').replace(/\s*\(\s*\d+\s+Pl(?:a|ä)tze\s*\)\s*$/i,'').replace(/\s+/g,' ').trim();
+  }
+
+  function normalizePersonName(value){
+    return cleanPersonLabel(value).normalize('NFC').toLocaleLowerCase('de-DE').replace(/[“”„"']/g,'').replace(/\s+/g,' ').trim();
+  }
+
+  function parseParticipantList(text){
+    const rows=[];const seen=new Set();
+    String(text||'').split(/\r?\n/).forEach(raw=>{
+      let label=raw.replace(/^\s*[-•]\s*/,'').trim();if(!label)return;
+      const m=label.match(/\(\s*(\d+)\s+Pl(?:a|ä)tze\s*\)\s*$/i);const seats=m?Math.max(1,Number(m[1])||1):1;
+      const base=cleanPersonLabel(label);const key=normalizePersonName(base);if(!key||seen.has(key))return;seen.add(key);rows.push({name:base,seats,label:seats>1?`${base} (${seats} Plätze)`:base,key});
+    });
+    return rows;
+  }
+
+  function participantListStats(text){const rows=parseParticipantList(text);return {rows,count:rows.reduce((sum,r)=>sum+r.seats,0),people:rows.length};}
+
+  function cleanWpCell(value){
+    return String(value||'')
+      .replace(/\*\*/g,'')
+      .replace(/\[([^\]]+)\]\([^\)]+\)/g,'$1')
+      .replace(/https?:\/\/\S+/gi,' ')
+      .replace(/\\&/g,'&')
+      .replace(/\s+/g,' ')
+      .trim();
+  }
+
+  function plausiblePersonCell(value){
+    const v=cleanWpCell(value);if(!v||v==='...'||v==='…')return false;
+    if(/^\d+(?:[.,]\d+)?$/.test(v)||/^€/.test(v))return false;
+    if(/^(freigegeben|bestätigt|offen|abgelehnt|storniert)$/i.test(v))return false;
+    if(/freigabe aufheben|ablehnen|löschen|bearbeiten\/?anzeigen|(?:^|\s)anzeigen(?:$|\s)|(?:^|\s)bearbeiten(?:$|\s)|plätze?|buchung|gesamt|status|name\s*:|e-mail\s*:/i.test(v))return false;
+    return /[A-Za-zÄÖÜäöüß]/.test(v);
+  }
+
+  function parseBookingPaste(raw){
+    const text=String(raw||'').replace(/\u00a0/g,' ');if(!text.trim())return {mode:'empty',rows:[],count:0,people:0};
+    const hasStatus=/\bFreigegeben\b/i.test(text);
+    const found=[];const seen=new Set();
+    if(hasStatus){
+      const lines=text.split(/\r?\n/);
+      for(let lineIndex=0;lineIndex<lines.length;lineIndex++){
+        const rawLine=lines[lineIndex];
+        if(!/\bFreigegeben\b/i.test(rawLine))continue;
+        let cells;
+        if(rawLine.includes('|')) cells=rawLine.split('|').map(cleanWpCell).filter(Boolean);
+        else if(rawLine.includes('\t')) cells=rawLine.split(/\t+/).map(cleanWpCell).filter(Boolean);
+        else cells=[cleanWpCell(rawLine)];
+        let statusIndex=cells.findIndex(c=>/\[?\s*Freigegeben\s*\]?/i.test(c));
+        if(statusIndex<0)statusIndex=cells.findIndex(c=>/\bFreigegeben\b/i.test(c));
+        let name='';
+        if(cells.length>1&&statusIndex>0){for(let i=statusIndex-1;i>=0;i--){if(plausiblePersonCell(cells[i])){name=cleanWpCell(cells[i]);break;}}}
+        if(!name&&cells.length===1){
+          const line=cells[0];const statusPos=line.search(/\[?\s*Freigegeben\s*\]?/i);if(statusPos>0){
+            const before=line.slice(0,statusPos).replace(/^(?:\.\.\.|…)?\s*/,'').trim();
+            const chunks=before.split(/\s{2,}|\t/).map(cleanWpCell).filter(plausiblePersonCell);name=chunks.at(-1)||before;
+          }
+        }
+        name=cleanWpCell(name).replace(/^(?:\.\.\.|…)\s*/,'').trim();
+        if(!plausiblePersonCell(name)){
+          for(let back=1;back<=4&&lineIndex-back>=0;back++){
+            const previous=cleanWpCell(lines[lineIndex-back]).replace(/^(?:\.\.\.|…)\s*/,'').trim();
+            if(plausiblePersonCell(previous)){name=previous;break;}
+          }
+        }
+        if(!plausiblePersonCell(name))continue;
+        const seatMatch=rawLine.match(/Freigegeben[^\n\r]*?(\d+)\s+Pl(?:a|ä)tze/i)||rawLine.match(/(\d+)\s+Pl(?:a|ä)tze/i);const seats=seatMatch?Math.max(1,Number(seatMatch[1])||1):1;
+        const key=normalizePersonName(name);if(!key||seen.has(key))continue;seen.add(key);found.push({name,seats,label:seats>1?`${name} (${seats} Plätze)`:name,key});
+      }
+    }
+    if(!found.length&&!hasStatus){
+      for(const line of text.split(/\r?\n/)){
+        const name=cleanWpCell(line).replace(/^\s*[-•]\s*/,'').trim();if(!plausiblePersonCell(name))continue;
+        const key=normalizePersonName(name);if(!key||seen.has(key))continue;seen.add(key);found.push({name,seats:1,label:name,key});
+      }
+    }
+    return {mode:hasStatus?'wordpress':'names',rows:found,count:found.reduce((sum,r)=>sum+r.seats,0),people:found.length};
+  }
+
+  function renderBookingPastePreview(){
+    const raw=$('bookingPasteInput')?.value||'';const parsed=parseBookingPaste(raw);const box=$('bookingPastePreview'),apply=$('applyBookingPasteBtn');if(!box||!apply)return;
+    apply.disabled=!parsed.rows.length;
+    if(parsed.mode==='empty'){box.textContent='Noch nichts eingefügt.';return;}
+    if(!parsed.rows.length){box.innerHTML='<strong>Keine freigegebenen TN erkannt.</strong>Prüfe, ob der kopierte Ausschnitt Namen und den Status „Freigegeben“ enthält. Alternativ kannst du nur die Namen untereinander einfügen.';return;}
+    const mode=parsed.mode==='wordpress'?'Buchungsseite erkannt':'Namensliste erkannt';const sample=parsed.rows.slice(0,12).map(r=>`<li>${esc(r.label)}</li>`).join('');const more=parsed.rows.length>12?`<li>… und ${parsed.rows.length-12} weitere</li>`:'';
+    box.innerHTML=`<strong>${mode}: ${parsed.people} Buchung${parsed.people===1?'':'en'} · ${parsed.count===1?'1 Platz':`${parsed.count} Plätze`}</strong><ul>${sample}${more}</ul>`;
+  }
+
+  function applyBookingPaste(){
+    const parsed=parseBookingPaste($('bookingPasteInput').value);if(!parsed.rows.length)return;
+    $('editBookedAttendees').value=parsed.rows.map(r=>r.label).join('\n');state.bookedListTouched=true;renderParticipantLists('booked');$('bookingPasteBox').hidden=true;toast(`${parsed.people} gebuchte TN übernommen.`);
+  }
+
+  function renderParticipantLists(updateNumbers=false){
+    const booked=participantListStats($('editBookedAttendees').value),actual=participantListStats($('editActualAttendees').value);
+    $('bookedListCount').textContent=booked.rows.length?`${booked.people} Name${booked.people===1?'':'n'} · ${booked.count} TN gezählt`:'Noch keine Namensliste erfasst.';
+    $('actualListCount').textContent=actual.rows.length?`${actual.people} Name${actual.people===1?'':'n'} · ${actual.count} TN gezählt`:'Noch keine Anwesenheitsliste erfasst.';
+    if(updateNumbers==='booked'||updateNumbers==='both')$('editBooked').value=String(booked.count);
+    if(updateNumbers==='actual'||updateNumbers==='both')$('editActual').value=String(actual.count);
+    renderParticipantComparison(booked.rows,actual.rows);
+  }
+
+  function renderParticipantComparison(bookedRows,actualRows){
+    const hint=$('comparisonHint'),summary=$('comparisonSummary'),grid=$('comparisonGrid');
+    if(!bookedRows.length||!actualRows.length){hint.hidden=false;hint.textContent='Für den Abgleich beide Listen erfassen.';summary.innerHTML='';grid.hidden=true;grid.innerHTML='';return;}
+    const booked=new Map(bookedRows.map(r=>[r.key,r]));const actual=new Map(actualRows.map(r=>[r.key,r]));
+    const matched=[...booked.values()].filter(r=>actual.has(r.key));const missing=[...booked.values()].filter(r=>!actual.has(r.key));const unexpected=[...actual.values()].filter(r=>!booked.has(r.key));
+    hint.hidden=true;summary.innerHTML=`<span class="comparison-chip ok">✓ ${matched.length} angemeldet & erschienen</span><span class="comparison-chip ${missing.length?'critical':'ok'}">${missing.length?'⚠':'✓'} ${missing.length} nicht erschienen</span><span class="comparison-chip ${unexpected.length?'warn':'ok'}">${unexpected.length?'⚠':'✓'} ${unexpected.length} nicht angemeldet</span>`;
+    const group=(title,rows,empty)=>`<div class="comparison-group"><strong>${esc(title)}</strong>${rows.length?`<ul>${rows.map(r=>`<li>${esc(r.name)}</li>`).join('')}</ul>`:`<div class="comparison-empty">${esc(empty)}</div>`}</div>`;
+    grid.innerHTML=group('Nicht erschienen',missing,'Niemand.')+group('Erschienen & angemeldet',matched,'Keine Übereinstimmung.')+group('Erschienen, aber nicht angemeldet',unexpected,'Niemand.');grid.hidden=false;
+  }
+
+  function copyBookedToActual(){
+    const text=$('editBookedAttendees').value.trim();if(!text){alert('Es ist noch keine Liste der gebuchten TN vorhanden.');return;}
+    if($('editActualAttendees').value.trim()&&!confirm('Die vorhandene Liste „Erschienene TN“ durch die gebuchten TN ersetzen?'))return;
+    $('editActualAttendees').value=text;state.actualListTouched=true;renderParticipantLists('actual');toast('Gebuchte TN als erschienene TN übernommen. Nicht-Erschienene können jetzt gelöscht werden.');
+  }
+
   function renderResolvedBbb(e){
     const eventUrl=$('editBbbUrl').value.trim(),partnerUrl=$('editPartnerBbbUrl').value.trim(),url=eventUrl||partnerUrl;const info=$('resolvedBbbInfo');
     if(!url){info.textContent='Kein BBB-Link hinterlegt.';return}
@@ -965,6 +1112,8 @@ main{padding:24px clamp(14px,3.5vw,48px) 60px;max-width:1500px;margin:0 auto}
 
   function applyEdit(){
     const e=state.data.events.find(x=>x.id===state.activeEventId);if(!e)return;const nowIso=new Date().toISOString();
+    if(state.bookedListTouched)$('editBooked').value=String(participantListStats($('editBookedAttendees').value).count);
+    if(state.actualListTouched)$('editActual').value=String(participantListStats($('editActualAttendees').value).count);
     const attendance=$('editAttendanceReceived').checked,certs=$('editCertificatesSent').checked;
     e.workflow.attendanceListReceived=attendance||certs;
     if(e.workflow.attendanceListReceived){const entered=$('editAttendanceDate').value;e.workflow.attendanceListReceivedAt=entered?`${entered}T12:00:00`:e.workflow.attendanceListReceivedAt||nowIso}else e.workflow.attendanceListReceivedAt=null;
@@ -1063,6 +1212,7 @@ main{padding:24px clamp(14px,3.5vw,48px) 60px;max-width:1500px;margin:0 auto}
   els.open.addEventListener('click',openData);els.new.addEventListener('click',newData);els.save.addEventListener('click',saveData);els.export.addEventListener('click',exportBackup);els.importWp.addEventListener('click',importWp);els.recover.addEventListener('click',loadRecovery);$('applyEditBtn').addEventListener('click',applyEdit);$('trackEventBtn').addEventListener('click',toggleTracking);$('archiveEventBtn').addEventListener('click',()=>{const e=state.data?.events.find(x=>x.id===state.activeEventId);if(e)setArchived(e.id,!Boolean(e.tracking?.archived));});
   $('editBbbUrl').addEventListener('input',()=>{const e=state.data?.events.find(x=>x.id===state.activeEventId);if(e)renderResolvedBbb(e)});$('editPartnerBbbUrl').addEventListener('input',()=>{const e=state.data?.events.find(x=>x.id===state.activeEventId);if(e)renderResolvedBbb(e)});
   $('editAttendanceReceived').addEventListener('change',()=>{if($('editAttendanceReceived').checked&&!$('editAttendanceDate').value)$('editAttendanceDate').value=todayInputValue();});$('editCertificatesSent').addEventListener('change',()=>{if($('editCertificatesSent').checked){$('editAttendanceReceived').checked=true;if(!$('editAttendanceDate').value)$('editAttendanceDate').value=todayInputValue();}});
+  $('pasteBookingsBtn').addEventListener('click',()=>{$('bookingPasteBox').hidden=false;$('bookingPasteInput').focus();renderBookingPastePreview();});$('closeBookingPasteBtn').addEventListener('click',()=>{$('bookingPasteBox').hidden=true;});$('clearBookingPasteBtn').addEventListener('click',()=>{$('bookingPasteInput').value='';renderBookingPastePreview();$('bookingPasteInput').focus();});$('bookingPasteInput').addEventListener('input',renderBookingPastePreview);$('applyBookingPasteBtn').addEventListener('click',applyBookingPaste);$('copyBookedToActualBtn').addEventListener('click',copyBookedToActual);$('editBookedAttendees').addEventListener('input',()=>{state.bookedListTouched=true;renderParticipantLists('booked');});$('editActualAttendees').addEventListener('input',()=>{state.actualListTouched=true;renderParticipantLists('actual');});
   window.addEventListener('beforeunload',e=>{if(state.dirty){e.preventDefault();e.returnValue=''}});
 
   function todayInputValue(){const d=new Date(),p=n=>String(n).padStart(2,'0');return `${d.getFullYear()}-${p(d.getMonth()+1)}-${p(d.getDate())}`}
