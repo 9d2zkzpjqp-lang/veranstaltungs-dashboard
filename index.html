@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="color-scheme" content="light dark">
-  <title>Kooperationsfortbildungen – Dashboard 0.9.2</title>
+  <title>Kooperationsfortbildungen – Dashboard 0.9.5</title>
   <style>
 :root {
   --bg: #f4f5f7;
@@ -35,7 +35,7 @@ code{background:#eef0f3;padding:.12rem .32rem;border-radius:5px}
 .app-header{display:flex;justify-content:space-between;gap:24px;align-items:flex-end;padding:28px clamp(18px,4vw,52px) 22px;background:var(--surface);border-bottom:1px solid var(--line)}
 .eyebrow{margin:0 0 5px;text-transform:uppercase;letter-spacing:.11em;font-size:.72rem;font-weight:700;color:var(--accent)}
 h1{margin:0;font-size:clamp(1.7rem,3vw,2.35rem);letter-spacing:-.03em}.subtitle{margin:6px 0 0;color:var(--muted)}
-.file-state{display:flex;align-items:center;gap:8px;font-size:.9rem;color:var(--muted);max-width:45ch;text-align:right}.dot{width:9px;height:9px;border-radius:50%;background:var(--ok);flex:none}.dot-muted{background:#9ca3af}.dot-dirty{background:#d08a24}
+.file-state{display:grid;gap:3px;font-size:.86rem;color:var(--muted);max-width:58ch;text-align:right}.file-state-main{display:flex;justify-content:flex-end;align-items:center;gap:8px}.file-state-export{font-weight:700}.file-state-export.ok{color:var(--ok)}.file-state-export.pending{color:var(--warn)}.file-state-export.unknown{color:var(--muted)}.file-state-times{font-size:.74rem;line-height:1.35}.file-state-export-name{font-size:.72rem;line-height:1.3}.dot{width:9px;height:9px;border-radius:50%;background:var(--ok);flex:none}.dot-muted{background:#9ca3af}.dot-dirty{background:#d08a24}
 main{padding:24px clamp(14px,3.5vw,48px) 60px;max-width:1500px;margin:0 auto}
 .toolbar{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;margin-bottom:20px}.toolbar-group{display:flex;gap:9px;flex-wrap:wrap}
 .btn{border:1px solid #c9cfd7;background:var(--surface);color:var(--text);border-radius:9px;padding:9px 13px;font-weight:600;box-shadow:0 1px 2px rgba(0,0,0,.02)}.btn:hover:not(:disabled){background:#f6f7f9}.btn:disabled{opacity:.45;cursor:not-allowed}.btn-primary{background:var(--accent);border-color:var(--accent);color:white}.btn-primary:hover:not(:disabled){background:var(--accent-strong)}.btn.danger{color:var(--danger);border-color:#ddbcbc}.icon-btn{border:0;background:transparent;font-size:28px;line-height:1;color:var(--muted);padding:4px 7px}
@@ -48,9 +48,10 @@ main{padding:24px clamp(14px,3.5vw,48px) 60px;max-width:1500px;margin:0 auto}
 .quarter-stats{padding:18px 20px;display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:12px}.q-stat{background:var(--surface-2);border:1px solid #e6e9ed;border-radius:10px;padding:14px}.q-stat strong{display:block;font-size:1.55rem;margin-top:5px}.q-stat span{font-size:.76rem;color:var(--muted)}
 .edit-dialog{border:0;border-radius:16px;padding:0;width:min(720px,94vw);max-height:90vh;box-shadow:0 25px 90px rgba(0,0,0,.3);background:var(--surface);color:var(--text)}.edit-dialog::backdrop{background:rgba(20,26,33,.44)}.dialog-head{display:flex;justify-content:space-between;gap:20px;padding:20px 22px 16px;border-bottom:1px solid var(--line)}.dialog-head h2{margin:0;font-size:1.25rem}.dialog-meta{margin:6px 0 0;color:var(--muted);font-size:.84rem}.dialog-body{padding:20px 22px;display:grid;gap:18px;overflow:auto}.dialog-body fieldset{border:1px solid var(--line);border-radius:11px;padding:8px 14px 4px}.dialog-body legend{font-weight:700;font-size:.82rem;padding:0 6px}.check-row{display:flex;gap:10px;padding:10px 3px;border-bottom:1px solid #eef0f3}.check-row:last-child{border-bottom:0}.check-row input{margin-top:3px;width:17px;height:17px}.check-row span{display:grid;color:var(--text);font-size:.9rem}.check-row small{color:var(--muted);margin-top:2px}.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}.form-grid label,.dialog-body>label{display:grid;gap:5px}.dialog-body textarea{resize:vertical}.source-links{display:flex;gap:8px;flex-wrap:wrap}.source-links a{border:1px solid #ccd3da;border-radius:8px;padding:7px 9px;text-decoration:none;font-size:.82rem;font-weight:650}.dialog-actions{display:flex;justify-content:space-between;gap:12px;padding:14px 22px;border-top:1px solid var(--line);background:var(--surface-2)}.dialog-actions-right{display:flex;gap:8px}
 .toast{position:fixed;right:22px;bottom:22px;background:#222b34;color:white;padding:11px 14px;border-radius:10px;box-shadow:0 10px 30px rgba(0,0,0,.24);opacity:0;transform:translateY(10px);pointer-events:none;transition:.18s ease;max-width:min(430px,90vw);z-index:1000}.toast.show{opacity:1;transform:translateY(0)}
-@media(max-width:950px){.summary-grid{grid-template-columns:1fr 1fr}.quarter-stats{grid-template-columns:1fr 1fr}.app-header{align-items:flex-start;flex-direction:column}.file-state{text-align:left}}
+@media(max-width:950px){.summary-grid{grid-template-columns:1fr 1fr}.quarter-stats{grid-template-columns:1fr 1fr}.app-header{align-items:flex-start;flex-direction:column}.file-state{text-align:left}.file-state-main{justify-content:flex-start}}
 @media(max-width:600px){.summary-grid{grid-template-columns:1fr}.quarter-stats{grid-template-columns:1fr}.form-grid{grid-template-columns:1fr}.dialog-actions{align-items:stretch;flex-direction:column}.dialog-actions-right{display:grid;grid-template-columns:1fr 1fr}.dialog-actions .btn{width:100%}}
 .storage-notice{margin:-8px 0 20px;padding:11px 13px;border:1px solid #e2c98c;border-radius:9px;background:var(--warn-soft);color:#6f4c14;font-size:.84rem;line-height:1.45}
+.export-reminder{margin:-8px 0 20px;padding:11px 13px;border:1px solid #e2c98c;border-radius:9px;background:#fff8e8;color:#6f4c14;font-size:.84rem;line-height:1.45;display:flex;align-items:center;justify-content:space-between;gap:14px}.export-reminder[hidden]{display:none}.export-reminder strong{display:block}.export-reminder .btn{flex:none;background:#fffdf7}
 .review-notice{padding:10px 12px;border-radius:9px;background:var(--warn-soft);border:1px solid #ead39d;color:#6f4c14;font-size:.84rem;line-height:1.45}
 .mini-tag{display:inline-block;font-size:.68rem;font-weight:700;padding:3px 7px;border-radius:999px;margin:0 0 5px 5px;vertical-align:top}.mini-tag.new{background:var(--warn-soft);color:var(--warn);border:1px solid #eed7a5}
 .event-table tbody tr.new-event-row{background:#eef8f1}.event-table tbody tr.new-event-row:hover{background:#e5f4e9}.event-table tbody tr.new-event-row td:first-child{box-shadow:inset 4px 0 0 #5f9f73}
@@ -75,35 +76,36 @@ main{padding:24px clamp(14px,3.5vw,48px) 60px;max-width:1500px;margin:0 auto}
     <div>
       <p class="eyebrow">HLA · Kooperation</p>
       <h1>Fortbildungs-Dashboard</h1>
-      <p class="subtitle">DFF · Uni Gießen · Medienanstalt Hessen · Prototyp 0.9.2</p>
+      <p class="subtitle">DFF · Uni Gießen · Medienanstalt Hessen · Prototyp 0.9.5</p>
     </div>
     <div class="file-state" id="fileState" aria-live="polite">
       <span class="dot dot-muted"></span>
-      <span>Keine Datendatei geöffnet</span>
+      <span>Kein Arbeitsstand geöffnet</span>
     </div>
   </header>
 
   <main>
     <section class="toolbar" aria-label="Datei und Import">
       <div class="toolbar-group">
-        <button class="btn btn-primary" id="openBtn">Datendatei öffnen</button>
-        <button class="btn" id="newBtn">Neue Datendatei</button>
-        <button class="btn" id="saveBtn" disabled>Speichern</button>
+        <button class="btn btn-primary" id="openBtn">Arbeitsstand öffnen</button>
+        <button class="btn" id="newBtn">Neuer Arbeitsstand</button>
+        <button class="btn" id="saveBtn" disabled>Arbeitsstand exportieren …</button>
         <button class="btn" id="recoverBtn" hidden disabled>Wiederherstellung laden</button>
       </div>
       <div class="toolbar-group">
         <button class="btn" id="importWpBtn" disabled>WordPress-Export importieren</button>
-        <button class="btn" id="exportBtn" disabled>Sicherung herunterladen</button>
+        <button class="btn" id="exportBtn" disabled>Sicherungskopie erstellen …</button>
       </div>
       <input id="dataFileInput" type="file" accept="application/json,.json" hidden>
       <input id="wpFileInput" type="file" accept="application/json,.json" hidden>
     </section>
     <div id="storageNotice" class="storage-notice" hidden></div>
+    <div id="exportReminder" class="export-reminder" hidden><div><strong>Portable JSON noch nicht aktualisiert</strong><span id="exportReminderText"></span></div><button class="btn" type="button" id="exportReminderBtn">Jetzt exportieren</button></div>
 
     <section id="emptyState" class="empty-state">
       <div class="empty-icon">▦</div>
       <h2>Noch keine Daten geladen</h2>
-      <p>Öffne <code>data/veranstaltungen.beispiel.json</code> oder lege eine neue Datendatei an. Das Frontend enthält selbst keine Veranstaltungsdaten.</p>
+      <p>Öffne einen vorhandenen Arbeitsstand oder lege einen neuen Arbeitsstand an. Das Frontend enthält selbst keine Veranstaltungsdaten.</p>
     </section>
 
     <div id="appContent" hidden>
@@ -391,7 +393,7 @@ main{padding:24px clamp(14px,3.5vw,48px) 60px;max-width:1500px;margin:0 auto}
 
   <script>
 /* Kleine lokale Datei-Hilfen.
- * Version 0.9.2 bleibt bewusst bei EINER JSON-Datendatei.
+ * Version 0.9.5 bleibt bewusst bei EINER JSON-Arbeitsdatei.
  * WebDAV ist noch nicht implementiert; diese Datei verspricht keine Drop-in-Migration.
  */
 (function(){
@@ -434,8 +436,8 @@ main{padding:24px clamp(14px,3.5vw,48px) 60px;max-width:1500px;margin:0 auto}
   }
   function clearRecovery(){try{localStorage.removeItem(RECOVERY_KEY)}catch(e){}}
 
-  function saveWorking(sourceName,text,dirty=false,lastExportName=null){
-    try{localStorage.setItem(WORKING_KEY,JSON.stringify({sourceName, savedAt:new Date().toISOString(), text, dirty:Boolean(dirty), lastExportName:lastExportName||null}));return true}catch(e){return false}
+  function saveWorking(sourceName,text,dirty=false,lastExportName=null,changesSinceExport=0,firstChangeAfterExportAt=null){
+    try{localStorage.setItem(WORKING_KEY,JSON.stringify({sourceName, savedAt:new Date().toISOString(), text, dirty:Boolean(dirty), lastExportName:lastExportName||null, changesSinceExport:Number(changesSinceExport)||0, firstChangeAfterExportAt:firstChangeAfterExportAt||null}));return true}catch(e){return false}
   }
   function getWorking(){
     try{const raw=localStorage.getItem(WORKING_KEY);return raw?JSON.parse(raw):null}catch(e){return null}
@@ -461,6 +463,7 @@ main{padding:24px clamp(14px,3.5vw,48px) 60px;max-width:1500px;margin:0 auto}
     schema:'hla-koop-dashboard',
     version:7,
     updatedAt:new Date().toISOString(),
+    exportedAt:null,
     settings:{
       lowEnrollmentThreshold:5,
       lowEnrollmentWarningDays:10,
@@ -491,6 +494,7 @@ main{padding:24px clamp(14px,3.5vw,48px) 60px;max-width:1500px;margin:0 auto}
     const d=M.emptyData();
     d.version=Math.max(Number(raw.version)||1,7);
     d.updatedAt=raw.updatedAt||d.updatedAt;
+    d.exportedAt=typeof raw.exportedAt==='string'?raw.exportedAt:null;
     d.settings={...d.settings,...(raw.settings||{})};
     d.settings.ownerFilters=normalizeOwnerFilters(raw.settings?.ownerFilters ?? d.settings.ownerFilters);
     d.settings.partnerDefaults=(raw.settings?.partnerDefaults&&typeof raw.settings.partnerDefaults==='object')?raw.settings.partnerDefaults:{};
@@ -789,55 +793,103 @@ main{padding:24px clamp(14px,3.5vw,48px) 60px;max-width:1500px;margin:0 auto}
   'use strict';
   const S=window.KoopStorage,M=window.KoopModel;
   const $=id=>document.getElementById(id);
-  const state={data:null,fileHandle:null,fileName:null,dirty:false,activeEventId:null,lastExportName:null,bookedListTouched:false,actualListTouched:false};
+  const state={data:null,fileHandle:null,fileName:null,dirty:false,activeEventId:null,lastExportName:null,changesSinceExport:0,firstChangeAfterExportAt:null,bookedListTouched:false,actualListTouched:false};
   const els={
-    fileState:$('fileState'),storageNotice:$('storageNotice'),empty:$('emptyState'),content:$('appContent'),open:$('openBtn'),new:$('newBtn'),save:$('saveBtn'),importWp:$('importWpBtn'),export:$('exportBtn'),recover:$('recoverBtn'),
+    fileState:$('fileState'),storageNotice:$('storageNotice'),exportReminder:$('exportReminder'),exportReminderText:$('exportReminderText'),exportReminderBtn:$('exportReminderBtn'),empty:$('emptyState'),content:$('appContent'),open:$('openBtn'),new:$('newBtn'),save:$('saveBtn'),importWp:$('importWpBtn'),export:$('exportBtn'),recover:$('recoverBtn'),
     dataInput:$('dataFileInput'),wpInput:$('wpFileInput'),actions:$('actionList'),tbody:$('eventTableBody'),partner:$('partnerFilter'),status:$('statusFilter'),search:$('searchInput'),count:$('eventCountLabel'),quarter:$('quarterSelect'),qstats:$('quarterStats'),dialog:$('editDialog'),hiddenToggle:$('hiddenToggleBtn'),hiddenPanel:$('hiddenPanel'),hiddenCount:$('hiddenCount'),hiddenSearch:$('hiddenSearch'),hiddenTbody:$('hiddenEventTableBody'),ownerFilterList:$('ownerFilterList'),archiveToggle:$('archiveToggleBtn'),archivePanel:$('archivePanel'),archiveCount:$('archiveCount'),archiveTbody:$('archiveTableBody')
   };
 
   function toast(msg){const t=$('toast');t.textContent=msg;t.classList.add('show');clearTimeout(toast.timer);toast.timer=setTimeout(()=>t.classList.remove('show'),3000)}
+  function hasUnexportedChanges(){
+    if(!state.data)return false;
+    if(state.dirty)return true;
+    const updated=new Date(state.data.updatedAt||0).getTime();
+    const exported=state.data.exportedAt?new Date(state.data.exportedAt).getTime():0;
+    return Boolean(exported&&updated&&updated>exported);
+  }
   function setDirty(v=true){
+    const wasPending=hasUnexportedChanges();
     state.dirty=v;
     if(state.data){
-      if(v)state.data.updatedAt=new Date().toISOString();
+      if(v){
+        state.data.updatedAt=new Date().toISOString();
+        state.changesSinceExport=(Number(state.changesSinceExport)||0)+1;
+        if(!wasPending||!state.firstChangeAfterExportAt)state.firstChangeAfterExportAt=new Date().toISOString();
+      }
       persistWorking();
       if(v)persistRecovery();
     }
     renderFileState();
+    renderExportReminder();
   }
   function persistWorking(){
-    try{S.saveWorking(state.fileName||'koop-dashboard-daten.json',JSON.stringify(state.data,null,2),state.dirty,state.lastExportName);}catch(e){console.warn('Arbeitsstand konnte nicht lokal gespeichert werden',e)}
+    try{S.saveWorking(state.fileName||'koop-dashboard-daten.json',JSON.stringify(state.data,null,2),state.dirty,state.lastExportName,state.changesSinceExport,state.firstChangeAfterExportAt);}catch(e){console.warn('Arbeitsstand konnte nicht lokal gespeichert werden',e)}
   }
   function persistRecovery(){
     try{S.saveRecovery(state.fileName||'koop-dashboard-daten.json',JSON.stringify(state.data,null,2));refreshRecoveryButton();}catch(e){console.warn('Recovery konnte nicht gespeichert werden',e)}
   }
   function refreshRecoveryButton(){const r=S.getRecovery();els.recover.hidden=!r;els.recover.disabled=!r;}
+  function exportState(){
+    if(!state.data)return {kind:'none',label:'Kein Arbeitsstand geöffnet'};
+    const updated=new Date(state.data.updatedAt||0).getTime();
+    const exported=state.data.exportedAt?new Date(state.data.exportedAt).getTime():0;
+    if(hasUnexportedChanges())return {kind:'pending',label:'Änderungen noch nicht exportiert'};
+    if(exported)return {kind:'ok',label:'Alle Änderungen exportiert'};
+    return {kind:'unknown',label:'Exportzeitpunkt unbekannt (ältere Datei)'};
+  }
   function renderFileState(){
-    if(!state.data){els.fileState.innerHTML='<span class="dot dot-muted"></span><span>Keine Datendatei geöffnet</span>';updateStorageNotice();return}
-    const name=state.fileName||'Neue Datendatei';
-    const extra=state.dirty?' · ungespeicherte Änderungen':'';
-    const exportInfo=state.lastExportName?` · zuletzt als neue Datei: ${state.lastExportName}`:'';
-    els.fileState.innerHTML=`<span class="dot ${state.dirty?'dot-dirty':''}"></span><span>${esc(name)}${extra}${esc(exportInfo)}</span>`;
+    if(!state.data){els.fileState.innerHTML='<div class="file-state-main"><span class="dot dot-muted"></span><span>Kein Arbeitsstand geöffnet</span></div>';updateStorageNotice();renderExportReminder();return}
+    const name=state.fileName||'Neuer Arbeitsstand';
+    const st=exportState();
+    const lastChange=state.data.updatedAt?fmtLong(state.data.updatedAt):'–';
+    const lastExport=state.data.exportedAt?fmtLong(state.data.exportedAt):'–';
+    const exportName=state.lastExportName?`Letzte Exportdatei: ${state.lastExportName}`:'';
+    els.fileState.innerHTML=`<div class="file-state-main"><span class="dot ${st.kind==='pending'?'dot-dirty':st.kind==='unknown'?'dot-muted':''}"></span><span>${esc(name)}</span></div><div class="file-state-export ${st.kind}">${st.kind==='ok'?'✓ ':st.kind==='pending'?'● ':''}${esc(st.label)}</div><div class="file-state-times">Letzte Änderung: ${esc(lastChange)} · Letzter Export: ${esc(lastExport)}</div>${exportName?`<div class="file-state-export-name">${esc(exportName)}</div>`:''}`;
     updateStorageNotice();
   }
   function updateStorageNotice(){
     if(!els.storageNotice)return;
     if(!state.data){els.storageNotice.hidden=true;return}
     if(state.fileHandle){
-      els.save.textContent='Speichern';
+      els.save.textContent='Arbeitsstand exportieren';
       els.storageNotice.hidden=true;
     }else{
-      els.save.textContent='Neue Datendatei speichern …';
+      els.save.textContent='Arbeitsstand exportieren …';
       els.storageNotice.hidden=false;
-      els.storageNotice.innerHTML='<strong>Lokaler Dateimodus:</strong> Dieser Browser kann die geöffnete JSON-Datei nicht direkt überschreiben. „Neue Datendatei speichern …“ lädt deshalb eine neue, eindeutig benannte Datei herunter. <strong>Der aktuelle Arbeitsstand wird zusätzlich automatisch in diesem Browser gespeichert und nach einem Neuladen wiederhergestellt.</strong> Die heruntergeladene JSON-Datei bleibt trotzdem die portable Arbeitsdatei für andere Geräte oder Browser.';
+      els.storageNotice.innerHTML='<strong>Lokaler Browser-Arbeitsstand:</strong> Änderungen werden automatisch in diesem Browser gespeichert und nach einem Neuladen wiederhergestellt. „Arbeitsstand exportieren …“ erzeugt zusätzlich eine portable JSON-Datei für andere Geräte, Browser oder den Checkpoint-Dienst.';
     }
   }
-  function activateData(data,name,handle=null,opts={}){
-    state.data=M.normalizeData(data);state.fileName=name;state.fileHandle=handle;state.dirty=Boolean(opts.dirty);state.lastExportName=opts.lastExportName||null;
-    els.empty.hidden=true;els.content.hidden=false;els.save.disabled=false;els.importWp.disabled=false;els.export.disabled=false;
-    rebuildPartnerFilter();rebuildQuarterFilter();render();if(!opts.skipWorking)persistWorking();if(state.dirty)persistRecovery();
+  function renderExportReminder(){
+    if(!els.exportReminder)return;
+    if(!state.data||!hasUnexportedChanges()){els.exportReminder.hidden=true;return}
+    const count=Number(state.changesSinceExport)||0;
+    const first=state.firstChangeAfterExportAt?new Date(state.firstChangeAfterExportAt).getTime():0;
+    const minutes=first?Math.floor((Date.now()-first)/60000):0;
+    const show=count>=5&&minutes>=15;
+    els.exportReminder.hidden=!show;
+    if(show)els.exportReminderText.textContent=` ${count} Änderungen seit dem letzten Export · seit ${minutes} Minuten. Der browserlokale Stand ist erhalten; empfohlen ist nur ein neuer portabler JSON-Checkpoint.`;
   }
-  function serialize(){return JSON.stringify(state.data,null,2)}
+  function activateData(data,name,handle=null,opts={}){
+    state.data=M.normalizeData(data);state.fileName=name;state.fileHandle=handle;state.dirty=Boolean(opts.dirty);state.lastExportName=opts.lastExportName||null;state.changesSinceExport=Number(opts.changesSinceExport)||0;state.firstChangeAfterExportAt=opts.firstChangeAfterExportAt||null;
+    if(state.dirty&&!state.firstChangeAfterExportAt)state.firstChangeAfterExportAt=state.data.updatedAt||new Date().toISOString();
+    els.empty.hidden=true;els.content.hidden=false;els.save.disabled=false;els.importWp.disabled=false;els.export.disabled=false;
+    rebuildPartnerFilter();rebuildQuarterFilter();render();if(!opts.skipWorking)persistWorking();if(state.dirty)persistRecovery();renderExportReminder();
+  }
+  function buildExportSnapshot(){
+    const exportedAt=new Date().toISOString();
+    const snapshot={...state.data,exportedAt};
+    return {exportedAt,text:JSON.stringify(snapshot,null,2)};
+  }
+  function commitExport(exportedAt,name){
+    state.data.exportedAt=exportedAt;
+    state.lastExportName=name||state.lastExportName;
+    state.dirty=false;
+    state.changesSinceExport=0;
+    state.firstChangeAfterExportAt=null;
+    persistWorking();
+    renderFileState();
+    renderExportReminder();
+  }
 
   function recoveryIfNewer(data,name){
     const r=S.getRecovery();
@@ -849,13 +901,13 @@ main{padding:24px clamp(14px,3.5vw,48px) 60px;max-width:1500px;margin:0 auto}
   }
 
   async function openData(){
-    if(state.dirty&&!confirm('Es gibt ungespeicherte Änderungen. Trotzdem eine andere Datei öffnen?'))return;
+    if(hasUnexportedChanges()&&!confirm('Es gibt Änderungen, die noch nicht als portable JSON exportiert wurden. Trotzdem eine andere Datei öffnen?'))return;
     if(S.supportsFileSystemAccess()){
       try{
         const r=await S.openWithPicker();const parsed=JSON.parse(r.text);const recovery=recoveryIfNewer(parsed,r.name);
         if(recovery&&confirm(`Für „${r.name}“ gibt es einen neueren lokalen Wiederherstellungsstand vom ${fmtLong(recovery.savedAt)}. Diesen statt der Datei laden?`)) activateData(recovery.data,r.name,null,{dirty:true});
         else activateData(parsed,r.name,r.handle);
-        toast('Datendatei geöffnet.');return;
+        toast('Arbeitsstand geöffnet.');return;
       }catch(e){if(e?.name==='AbortError')return;console.warn(e)}
     }
     els.dataInput.click();
@@ -866,28 +918,33 @@ main{padding:24px clamp(14px,3.5vw,48px) 60px;max-width:1500px;margin:0 auto}
       const parsed=JSON.parse(await f.text());const recovery=recoveryIfNewer(parsed,f.name);
       if(recovery&&confirm(`Für „${f.name}“ gibt es einen neueren lokalen Wiederherstellungsstand vom ${fmtLong(recovery.savedAt)}. Diesen statt der ausgewählten Datei laden?`)) activateData(recovery.data,f.name,null,{dirty:true});
       else activateData(parsed,f.name,null);
-      toast('Datendatei geöffnet.');
+      toast('Arbeitsstand geöffnet.');
     }catch(e){alert(e.message)}finally{els.dataInput.value=''}
   });
 
   async function saveData(){
     if(!state.data)return;
-    const text=serialize();
+    const out=buildExportSnapshot();
     try{
       if(state.fileHandle){
-        await S.writeHandle(state.fileHandle,text);setDirty(false);S.clearRecovery();refreshRecoveryButton();toast('Datendatei gespeichert.');
+        await S.writeHandle(state.fileHandle,out.text);commitExport(out.exportedAt,state.fileName||'Arbeitsstand.json');S.clearRecovery();refreshRecoveryButton();toast('Arbeitsstand als portable JSON exportiert.');
       }else{
-        const name=timestampedDataName();S.downloadText(name,text);state.lastExportName=name;state.dirty=false;persistWorking();renderFileState();persistRecovery();
-        alert(`Der aktuelle Stand wurde als neue Datei „${name}“ heruntergeladen.\n\nWichtig: Die ursprünglich geöffnete Datei „${state.fileName||'–'}“ wurde NICHT verändert. Verwende beim nächsten Öffnen die neu heruntergeladene Datei.`);
+        const name=timestampedDataName();S.downloadText(name,out.text);commitExport(out.exportedAt,name);persistRecovery();
+        alert(`Der aktuelle browserlokale Stand wurde als portable Datei „${name}“ exportiert.\n\nDie ursprünglich geöffnete Datei „${state.fileName||'–'}“ wurde nicht verändert.`);
       }
-    }catch(e){alert('Speichern fehlgeschlagen: '+e.message)}
+    }catch(e){alert('Export fehlgeschlagen: '+e.message)}
   }
 
-  function newData(){if(state.dirty&&!confirm('Ungespeicherte Änderungen verwerfen und neu beginnen?'))return;activateData(M.emptyData(),'koop-dashboard-daten.json',null,{dirty:true});toast('Neue leere Datendatei angelegt.');}
-  function exportBackup(){if(!state.data)return;const name=`koop-dashboard-sicherung-${fileStamp()}.json`;S.downloadText(name,serialize());toast(`Sicherung „${name}“ heruntergeladen.`);}
+  function newData(){if(hasUnexportedChanges()&&!confirm('Noch nicht exportierte Änderungen verwerfen und neu beginnen?'))return;activateData(M.emptyData(),'koop-dashboard-daten.json',null,{dirty:true,changesSinceExport:1,firstChangeAfterExportAt:new Date().toISOString()});toast('Neuer leerer Arbeitsstand angelegt.');}
+  function exportBackup(){
+    if(!state.data)return;
+    const name=`koop-dashboard-sicherung-${fileStamp()}.json`;const out=buildExportSnapshot();
+    try{S.downloadText(name,out.text);commitExport(out.exportedAt,name);persistRecovery();toast(`Sicherungskopie „${name}“ exportiert.`);}catch(e){alert('Sicherungsexport fehlgeschlagen: '+e.message)}
+  }
+
   function loadRecovery(){
     const r=S.getRecovery();if(!r)return;
-    if(state.dirty&&!confirm('Aktuelle ungespeicherte Änderungen verwerfen und Wiederherstellungsstand laden?'))return;
+    if(hasUnexportedChanges()&&!confirm('Aktuelle, noch nicht exportierte Änderungen verwerfen und Wiederherstellungsstand laden?'))return;
     try{activateData(JSON.parse(r.text),r.sourceName||'Wiederherstellung.json',null,{dirty:true});toast('Lokalen Wiederherstellungsstand geladen.');}catch(e){alert('Wiederherstellung konnte nicht geladen werden: '+e.message)}
   }
 
@@ -1147,7 +1204,7 @@ main{padding:24px clamp(14px,3.5vw,48px) 60px;max-width:1500px;margin:0 auto}
     e.workflow.weeklyPlanFeedback=$('editWpFeedback').value.trim();const forwarded=$('editWpFeedbackForwarded').checked;e.workflow.weeklyPlanFeedbackForwarded=forwarded;if(forwarded&&!e.workflow.weeklyPlanFeedbackForwardedAt)e.workflow.weeklyPlanFeedbackForwardedAt=nowIso;if(!forwarded)e.workflow.weeklyPlanFeedbackForwardedAt=null;
     e.links=e.links||{};e.links.bbbUrl=$('editBbbUrl').value.trim();state.data.settings.partnerDefaults=state.data.settings.partnerDefaults||{};const partnerBbb=$('editPartnerBbbUrl').value.trim();if(partnerBbb)state.data.settings.partnerDefaults[e.partner]={...(state.data.settings.partnerDefaults[e.partner]||{}),bbbUrl:partnerBbb};else if(state.data.settings.partnerDefaults[e.partner]){delete state.data.settings.partnerDefaults[e.partner].bbbUrl;if(!Object.keys(state.data.settings.partnerDefaults[e.partner]).length)delete state.data.settings.partnerDefaults[e.partner];}
     e.notes=$('editNotes').value.trim();e.tracking.reviewed=true;e.updatedAt=nowIso;
-    setDirty(true);els.dialog.close();render();toast('Bearbeitungsstand übernommen. Noch nicht in Datendatei gesichert.');
+    setDirty(true);els.dialog.close();render();toast('Änderung übernommen und lokal gespeichert. Noch nicht als JSON exportiert.');
   }
 
   function toggleTracking(){
@@ -1237,7 +1294,9 @@ main{padding:24px clamp(14px,3.5vw,48px) 60px;max-width:1500px;margin:0 auto}
   $('editBbbUrl').addEventListener('input',()=>{const e=state.data?.events.find(x=>x.id===state.activeEventId);if(e)renderResolvedBbb(e)});$('editPartnerBbbUrl').addEventListener('input',()=>{const e=state.data?.events.find(x=>x.id===state.activeEventId);if(e)renderResolvedBbb(e)});
   $('editAttendanceReceived').addEventListener('change',()=>{if($('editAttendanceReceived').checked&&!$('editAttendanceDate').value)$('editAttendanceDate').value=todayInputValue();});$('editCertificatesSent').addEventListener('change',()=>{if($('editCertificatesSent').checked){$('editAttendanceReceived').checked=true;if(!$('editAttendanceDate').value)$('editAttendanceDate').value=todayInputValue();}});
   $('pasteBookingsBtn').addEventListener('click',()=>{$('bookingPasteBox').hidden=false;$('bookingPasteInput').focus();renderBookingPastePreview();});$('closeBookingPasteBtn').addEventListener('click',()=>{$('bookingPasteBox').hidden=true;});$('clearBookingPasteBtn').addEventListener('click',()=>{$('bookingPasteInput').value='';renderBookingPastePreview();$('bookingPasteInput').focus();});$('bookingPasteInput').addEventListener('input',renderBookingPastePreview);$('applyBookingPasteBtn').addEventListener('click',applyBookingPaste);$('copyBookedToActualBtn').addEventListener('click',copyBookedToActual);$('editBookedAttendees').addEventListener('input',()=>{state.bookedListTouched=true;renderParticipantLists('booked');});$('editActualAttendees').addEventListener('input',()=>{state.actualListTouched=true;renderParticipantLists('actual');});
-  window.addEventListener('beforeunload',e=>{if(state.dirty){e.preventDefault();e.returnValue=''}});
+  if(els.exportReminderBtn)els.exportReminderBtn.addEventListener('click',saveData);
+  window.addEventListener('beforeunload',e=>{if(hasUnexportedChanges()){e.preventDefault();e.returnValue=''}});
+  setInterval(renderExportReminder,60000);
 
   function todayInputValue(){const d=new Date(),p=n=>String(n).padStart(2,'0');return `${d.getFullYear()}-${p(d.getMonth()+1)}-${p(d.getDate())}`}
   function isoDateValue(v){if(!v)return '';const d=new Date(v);if(Number.isNaN(d.getTime()))return String(v).slice(0,10);const p=n=>String(n).padStart(2,'0');return `${d.getFullYear()}-${p(d.getMonth()+1)}-${p(d.getDate())}`}
@@ -1252,7 +1311,7 @@ main{padding:24px clamp(14px,3.5vw,48px) 60px;max-width:1500px;margin:0 auto}
     const w=S.getWorking?.();if(!w?.text)return false;
     try{
       const parsed=JSON.parse(w.text);
-      activateData(parsed,w.sourceName||'Lokaler Arbeitsstand.json',null,{dirty:Boolean(w.dirty),lastExportName:w.lastExportName||null,skipWorking:true});
+      activateData(parsed,w.sourceName||'Lokaler Arbeitsstand.json',null,{dirty:Boolean(w.dirty),lastExportName:w.lastExportName||null,changesSinceExport:Number(w.changesSinceExport)||0,firstChangeAfterExportAt:w.firstChangeAfterExportAt||null,skipWorking:true});
       toast('Letzten Arbeitsstand automatisch wiederhergestellt.');
       return true;
     }catch(e){
